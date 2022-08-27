@@ -1,4 +1,4 @@
-package io.github.benkoff.webrtcss.util;
+package io.github.benkoff.webrtcss.videocall.service.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

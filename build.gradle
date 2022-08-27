@@ -40,19 +40,10 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-websocket')
     compile('org.springframework.boot:spring-boot-starter-validation')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 task unpack(type: Copy) {
 	dependsOn bootJar
 	from(zipTree("build/libs/${bootJar.archiveName}"))
 	into("build/dependency")
-}
-
-docker {
-	name "benkoff/${bootJar.baseName}"
-	tags 'latest'
-	dockerfile file('Dockerfile')
-	copySpec.from(tasks.unpack.outputs).into("dependency")
-	buildArgs(['DEPENDENCY': "dependency"])
 }

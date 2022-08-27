@@ -1,4 +1,4 @@
-package io.github.benkoff.webrtcss.domain;
+package io.github.benkoff.webrtcss.videocall.service.bean;
 
 import java.util.Objects;
 

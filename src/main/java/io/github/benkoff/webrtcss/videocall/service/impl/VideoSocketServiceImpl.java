@@ -1,8 +1,8 @@
-package io.github.benkoff.webrtcss.service;
+package io.github.benkoff.webrtcss.videocall.service.impl;
 
-import io.github.benkoff.webrtcss.domain.Room;
-import io.github.benkoff.webrtcss.domain.RoomService;
-import io.github.benkoff.webrtcss.util.Parser;
+import io.github.benkoff.webrtcss.videocall.service.bean.Room;
+import io.github.benkoff.webrtcss.videocall.service.util.Parser;
+import io.github.benkoff.webrtcss.videocall.service.VideoSocketService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
-public class MainServiceImpl implements MainService {
+public class VideoSocketServiceImpl implements VideoSocketService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final String REDIRECT = "redirect:/";
     
@@ -22,7 +22,7 @@ public class MainServiceImpl implements MainService {
     private final Parser parser;
 
     @Autowired
-    public MainServiceImpl(final RoomService roomService, final Parser parser) {
+    public VideoSocketServiceImpl(final RoomService roomService, final Parser parser) {
         this.roomService = roomService;
         this.parser = parser;
     }

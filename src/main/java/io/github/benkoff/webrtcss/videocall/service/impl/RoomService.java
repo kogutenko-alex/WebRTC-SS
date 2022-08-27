@@ -1,6 +1,7 @@
-package io.github.benkoff.webrtcss.domain;
+package io.github.benkoff.webrtcss.videocall.service.impl;
 
-import io.github.benkoff.webrtcss.util.Parser;
+import io.github.benkoff.webrtcss.videocall.service.bean.Room;
+import io.github.benkoff.webrtcss.videocall.service.util.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
@@ -15,23 +16,22 @@ import java.util.TreeSet;
 @Service
 public class RoomService {    
     private final Parser parser;
-    // repository substitution since this is a very simple realization
     private final Set<Room> rooms = new TreeSet<>(Comparator.comparing(Room::getId));
 
     @Autowired
-    public RoomService(final Parser parser) {
+    public RoomService(Parser parser) {
         this.parser = parser;
     }
 
     public Set<Room> getRooms() {
-        final TreeSet<Room> defensiveCopy = new TreeSet<>(Comparator.comparing(Room::getId));
+        TreeSet<Room> defensiveCopy = new TreeSet<>(Comparator.comparing(Room::getId));
         defensiveCopy.addAll(rooms);
 
         return defensiveCopy;
     }
 
-    public Boolean addRoom(final Room room) {
-        return rooms.add(room);
+    public void addRoom(Room room) {
+        rooms.add(room);
     }
 
     public Optional<Room> findRoomByStringId(final String sid) {
@@ -43,17 +43,17 @@ public class RoomService {
         return room.getId();
     }
 
-    public Map<String, WebSocketSession> getClients(final Room room) {
+    public Map<String, WebSocketSession> getClients(Room room) {
         return Optional.ofNullable(room)
                 .map(r -> Collections.unmodifiableMap(r.getClients()))
                 .orElse(Collections.emptyMap());
     }
 
-    public WebSocketSession addClient(final Room room, final String name, final WebSocketSession session) {
-        return room.getClients().put(name, session);
+    public void addClient(Room room, String name, WebSocketSession session) {
+        room.getClients().put(name, session);
     }
 
-    public WebSocketSession removeClientByName(final Room room, final String name) {
-        return room.getClients().remove(name);
+    public void removeClientByName(Room room, String name) {
+        room.getClients().remove(name);
     }
 }

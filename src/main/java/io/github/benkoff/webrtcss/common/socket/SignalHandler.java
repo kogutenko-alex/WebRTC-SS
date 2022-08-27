@@ -1,9 +1,9 @@
-package io.github.benkoff.webrtcss.socket;
+package io.github.benkoff.webrtcss.common.socket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.benkoff.webrtcss.domain.Room;
-import io.github.benkoff.webrtcss.domain.RoomService;
-import io.github.benkoff.webrtcss.domain.WebSocketMessage;
+import io.github.benkoff.webrtcss.videocall.service.bean.Room;
+import io.github.benkoff.webrtcss.videocall.service.impl.RoomService;
+import io.github.benkoff.webrtcss.videocall.service.bean.WebSocketMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class SignalHandler extends TextWebSocketHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     // session id to room mapping
-    private Map<String, Room> sessionIdToRoomMap = new HashMap<>();
+    private final Map<String, Room> sessionIdToRoomMap = new HashMap<>();
 
     // message types, used in signalling:
     // text message

@@ -1,6 +1,6 @@
-package io.github.benkoff.webrtcss.config;
+package io.github.benkoff.webrtcss.common.config;
 
-import io.github.benkoff.webrtcss.socket.SignalHandler;
+import io.github.benkoff.webrtcss.common.socket.SignalHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.WebSocketHandler;

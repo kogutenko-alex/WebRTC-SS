@@ -1,4 +1,4 @@
-package io.github.benkoff.webrtcss.domain;
+package io.github.benkoff.webrtcss.videocall.service.bean;
 
 import org.springframework.web.socket.WebSocketSession;
 
@@ -20,7 +20,7 @@ public class Room {
         return id;
     }
 
-    Map<String, WebSocketSession> getClients() {
+    public Map<String, WebSocketSession> getClients() {
         return clients;
     }
 
